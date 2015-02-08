@@ -1,8 +1,8 @@
 FROM webhippie/minecraft-vanilla:1.8
 MAINTAINER Thomas Boerger <thomas@webhippie.de>
 
-ENV MINECRAFT_VERSION 1.8
-ENV FORGE_VERSION 11.14.1.1334
+ENV MINECRAFT_VERSION 1.7.10
+ENV FORGE_VERSION 10.13.2.1291
 ENV FORGE_URL http://files.minecraftforge.net/maven/net/minecraftforge/forge/${MINECRAFT_VERSION}-${FORGE_VERSION}/forge-${MINECRAFT_VERSION}-${FORGE_VERSION}-installer.jar
 ENV FORGE_JAR forge-${MINECRAFT_VERSION}-${FORGE_VERSION}-universal.jar
 

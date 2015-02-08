@@ -1,4 +1,4 @@
-FROM webhippie/minecraft-vanilla:1.8
+FROM webhippie/minecraft-vanilla:1.7.10
 MAINTAINER Thomas Boerger <thomas@webhippie.de>
 
 ENV MINECRAFT_VERSION 1.7.10

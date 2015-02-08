@@ -8,7 +8,7 @@ These are docker images for Minecraft Forge running on an
 
 ```
 docker run -v /minecraft/merge -v /minecraft/world -v /minecraft/logs --name minecraft-data busybox true
-docker run -p 25565:25565 -d --volumes-from minecraft-data --name minecraft webhippie/minecraft-forge:latest start
+docker run -p 25565:25565 -d --volumes-from minecraft-data --name minecraft webhippie/minecraft-forge:11.14.0 start
 
 # Execute this for further available commands
 docker exec -ti minecraft manage help

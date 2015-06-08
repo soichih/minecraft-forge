@@ -1,27 +1,21 @@
-FROM webhippie/minecraft-vanilla:1.8
-MAINTAINER Thomas Boerger <thomas@webhippie.de>
 
-ENV MINECRAFT_VERSION 1.8
-ENV FORGE_VERSION 11.14.1.1334
-ENV FORGE_URL http://files.minecraftforge.net/maven/net/minecraftforge/forge/${MINECRAFT_VERSION}-${FORGE_VERSION}/forge-${MINECRAFT_VERSION}-${FORGE_VERSION}-installer.jar
-ENV FORGE_JAR forge-${MINECRAFT_VERSION}-${FORGE_VERSION}-universal.jar
+FROM webhippie/minecraft-vanilla:1.7.10
 
-ENV SERVER_MAXHEAP 2048M
-ENV SERVER_MINHEAP 512M
-ENV SERVER_MAXPERM 128M
-ENV SERVER_OPTS nogui
-ENV SERVER_MOTD Minecraft
-ENV SERVER_RCONPWD webhippie
+MAINTAINER Soichi Hayashi <soichih@gmail.com>
 
-RUN curl -o /minecraft/forge-${MINECRAFT_VERSION}-${FORGE_VERSION}-installer.jar ${FORGE_URL} 2> /dev/null && \
+ENV FORGE_INSTALLER_PATH http://files.minecraftforge.net/maven/net/minecraftforge/forge/1.7.10-10.13.3.1428-1.7.10
+ENV FORGE_INSTALLER_NAME forge-1.7.10-10.13.3.1428-1.7.10-installer.jar
+
+RUN curl ${FORGE_INSTALLER_PATH}/${FORGE_INSTALLER_NAME} -o /minecraft/${FORGE_INSTALLER_NAME} && \
   cd /minecraft && \
-  java -jar forge-${MINECRAFT_VERSION}-${FORGE_VERSION}-installer.jar --installServer && \
-  rm -f /minecraft/forge-${MINECRAFT_VERSION}-${FORGE_VERSION}-installer.jar
+  java -jar ${FORGE_INSTALLER_NAME} --installServer && \
+  rm -f /minecraft/${FORGE_INSTALLER_NAME}
 
-VOLUME ["/minecraft/merge", "/minecraft/world", "/minecraft/logs"]
+#VOLUME ["/minecraft/merge", "/minecraft/world", "/minecraft/logs"]
+ADD /minecraft-default /minecraft
 
-ADD rootfs /
 EXPOSE 25565 25575
 
 WORKDIR /minecraft
-CMD ["/usr/bin/s6-svscan","/etc/s6"]
+CMD ["java", "-XX:MaxPermSize=128M", "-Xmx2048M", "-Xms512M", "-jar", "forge-1.7.10-10.13.3.1428-1.7.10-universal.jar", "nogui"]
+

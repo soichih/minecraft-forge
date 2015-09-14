@@ -1,13 +1,13 @@
 
-docker stop minecraft-forge-1.7.10
-docker rm minecraft-forge-1.7.10
+docker stop mcf1710
+docker rm mcf1710
 
 docker run --restart=always \
-    --name minecraft-forge-1.7.10 \
+    --name mcf1710 \
     -v `pwd`/logs:/minecraft/logs \
     -v `pwd`/world:/minecraft/world \
     -v `pwd`/mods:/minecraft/mods \
     -p 25565:25565 \
-    -d soichih/minecraft-forge:1.7.10
+    -d soichih/mcf:1.7.10
 
-docker logs -f minecraft-forge-1.7.10
+docker logs -f mcf1710

@@ -17,5 +17,5 @@ ADD /minecraft-default /minecraft
 EXPOSE 25565 25575
 
 WORKDIR /minecraft
-CMD ["java", "-XX:MaxPermSize=128M", "-Xmx2048M", "-Xms512M", "-jar", "forge-1.7.10-10.13.3.1428-1.7.10-universal.jar", "nogui"]
+CMD ["java", "-XX:MaxPermSize=128M", "-Xmx1024M", "-Xms256M", "-Dfml.queryResult=confirm", "-jar", "forge-1.7.10-10.13.3.1428-1.7.10-universal.jar", "nogui"]
 
